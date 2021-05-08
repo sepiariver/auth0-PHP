@@ -6,6 +6,7 @@ namespace Auth0\SDK\API;
 use Auth0\SDK\API\Header\AuthorizationBearer;
 use Auth0\SDK\API\Helpers\ApiClient;
 use Auth0\SDK\API\Management\Blacklists;
+use Auth0\SDK\API\Management\Branding;
 use Auth0\SDK\API\Management\Clients;
 use Auth0\SDK\API\Management\ClientGrants;
 use Auth0\SDK\API\Management\Connections;
@@ -49,6 +50,13 @@ class Management
      * @var Blacklists
      */
     private $blacklists;
+
+    /**
+     * Instance of Auth0\SDK\API\Management\Branding
+     *
+     * @var Branding
+     */
+    private $branding;
 
     /**
      * Instance of Auth0\SDK\API\Management\Clients
@@ -233,6 +241,20 @@ class Management
         }
 
         return $this->blacklists;
+    }
+
+    /**
+     * Return an instance of the Branding class.
+     *
+     * @return Branding
+     */
+    public function branding() : Branding
+    {
+        if (! $this->branding instanceof Branding) {
+            $this->branding = new Branding($this->apiClient);
+        }
+
+        return $this->branding;
     }
 
     /**
